@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Cosine calculator</title>
+    <style>
+        * {
+            outline: none;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        input {
+            position: absolute;
+            border: none;
+            border-bottom: 2px solid black;
+            width: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <svg height="200" width="320" class="centered">
+        <polygon points="70,0 0,180 320,200" style="fill: transparent;stroke: black;stroke-width: 2;"></polygon>
+    </svg>
+
+    <div class="centered">
+        <input type="text" id="a" style="left: -173px; top: -35px;">
+        <input type="text" id="c" style="left: 50px; top: -40px;">
+        <input type="text" id="b" style="left: -30px; top: 100px;">
+        <input type="text" id="C" style="left: -130px; top: 50px;">
+    </div>
+
+    <img width="200px" class="centered" style="margin-top: 225px;" src="./rule.png">
+
+    <button onclick="calculate()" class="centered" style="margin-top: -150px">Calculate</button>
+
+    <script>
+        function calculate() {
+            a = getForm("a")
+            c = getForm("c")
+            b = getForm("b")
+            C = getForm("C")
+
+            if (a == 0) {
+                alert("a is a dependant variable")
+            } else if (b == 0) {
+                alert("b is a dependant aviable")
+            } else if (c == 0) {
+                alert(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) - (2 * a * b * Math.cos(C * Math.PI / 180))))
+            } else if (C == 0) {
+                frac = -((Math.pow(c, 2) - Math.pow(a, 2) - Math.pow(b, 2)) / (2 * a * b))
+                console.log(frac)
+                alert(Math.acos(frac) * 180 / Math.PI)
+            }
+        }
+
+        function getForm(id) {
+            console.log(document.getElementById(id).value)
+            if (document.getElementById(id).value == "") return 0
+            return parseFloat(document.getElementById(id).value)
+        }
+    </script>
+
+</body>
+
+</html
